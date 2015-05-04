@@ -49,9 +49,12 @@ func Get() ([][]string, error) {
 		line := scanner.Text()
 		fields := strings.Fields(line)
 		conn := fields[1:4]
+
+		// If this is a connection and and RTO can be found.
 		if len(fields) > 12 {
 			conn = append(conn, fields[12])
 		}
+
 		connections = append(connections, conn)
 	}
 	file.Close()

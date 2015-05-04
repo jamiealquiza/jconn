@@ -15,6 +15,7 @@ Assuming Go is installed:
 % jconn -h
 Usage of jconn:
   -tag-hostname=false: Add @hostname: hostname field-value
+  -tag-rto=true: Add RTO field if applicable
   -tag-timestamp=false: Add @timestamp: RFC3339 field-value
 </pre>
 
@@ -22,7 +23,7 @@ Usage of jconn:
 
 Inbound SSH connections:
 <pre>
-% jconn | grep '"local_port":"22"' | grep ESTAB
+% jconn -tag-rto=false | grep '"local_port":"22"' | grep ESTAB
 {"local_ip":"192.168.100.25","local_port":"22","remote_ip":"192.168.100.1","remote_port":"36880","state":"ESTABLISHED"}
 </pre>
 

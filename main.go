@@ -36,11 +36,13 @@ var (
 	ts           string
 	tagHostname  bool
 	tagTimestamp bool
+	tagRto       bool
 )
 
 func init() {
 	flag.BoolVar(&tagHostname, "tag-hostname", false, "Add @hostname: hostname field-value")
 	flag.BoolVar(&tagTimestamp, "tag-timestamp", false, "Add @timestamp: RFC3339 field-value")
+	flag.BoolVar(&tagRto, "tag-rto", true, "Add RTO field if applicable")
 	flag.Parse()
 }
 
@@ -77,7 +79,7 @@ func main() {
 			Timestamp:  ts,
 		}
 
-		if len(c) == 6 {
+		if tagRto && len(c) == 6 {
 			m.RTO = c[5]
 		}
 
