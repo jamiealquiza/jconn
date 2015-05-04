@@ -68,7 +68,6 @@ func main() {
 
 	conns, _ := tcpconns.Get()
 	for _, c := range conns {
-		fmt.Println(c)
 		m := &connection{
 			LocalIp:    c[0],
 			LocalPort:  c[1],
