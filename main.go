@@ -28,7 +28,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/jamiealquiza/tcpconns"
+	"github.com/jamiealquiza/jconn/tcpconns"
 )
 
 var (
@@ -50,6 +50,7 @@ type connection struct {
 	RemoteIp   string `json:"remote_ip"`
 	RemotePort string `json:"remote_port"`
 	State      string `json:"state"`
+	RTO        string `json:"rto,omitempty"`
 	Timestamp  string `json:"@timestamp,omitempty"`
 	Hostname   string `json:"@hostname,omitempty"`
 }
@@ -65,7 +66,7 @@ func main() {
 
 	conns, _ := tcpconns.Get()
 	for _, c := range conns {
-
+		fmt.Println(c)
 		m := &connection{
 			LocalIp:    c[0],
 			LocalPort:  c[1],
@@ -74,6 +75,10 @@ func main() {
 			State:      c[4],
 			Hostname:   hostname,
 			Timestamp:  ts,
+		}
+
+		if len(c) == 6 {
+			m.RTO = c[5]
 		}
 
 		msg, err := json.Marshal(m)
