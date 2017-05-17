@@ -47,9 +47,9 @@ func init() {
 }
 
 type connection struct {
-	LocalIp    string `json:"local_ip"`
+	LocalIP    string `json:"local_ip"`
 	LocalPort  string `json:"local_port"`
-	RemoteIp   string `json:"remote_ip"`
+	RemoteIP   string `json:"remote_ip"`
 	RemotePort string `json:"remote_port"`
 	State      string `json:"state"`
 	RTO        string `json:"rto,omitempty"`
@@ -69,9 +69,9 @@ func main() {
 	conns, _ := tcpconns.Get()
 	for _, c := range conns {
 		m := &connection{
-			LocalIp:    c[0],
+			LocalIP:    c[0],
 			LocalPort:  c[1],
-			RemoteIp:   c[2],
+			RemoteIP:   c[2],
 			RemotePort: c[3],
 			State:      c[4],
 			Hostname:   hostname,
