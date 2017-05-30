@@ -1,5 +1,5 @@
 # tcp-conns
-Fetches TCP connection info in single-digit millisecond time.
+Fetches TCP connection info in sub-millisecond time.
 
 Output format: [local addr, local port, remote addr, remote port, state]
 
